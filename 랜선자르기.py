@@ -7,7 +7,7 @@ for i in range(n):
 
 a.sort()
 
-start=0
+start=1
 end = max(a)
 max = 0
 while start<=end:
@@ -16,15 +16,13 @@ while start<=end:
     for i in a:
         cnt += (i // mid) #순서대로 나눠보기
 
+ 
+
     if cnt >= m:
         start = mid + 1
-        if cnt == m:
-            if max <= mid:
-                max = mid
+        
     else:
         end = mid - 1
-        if cnt == m:
-            if max <= mid:
-                max = mid
+        
 
-print(max)
+print(end)
