@@ -1,15 +1,10 @@
-import sys
+while 1:
+#     for i in range(m):
+#         arr.append(arr.pop())
+#     print(dq.append(arr))
 
-dict={}
-n = int(sys.stdin.readline()) #N
-
-for i in range(0, n*2-1):
-    m = sys.stdin.readline()
-    if m in dict:
-        dict[m]+=1
-    else:
-        dict[m]=1
-for key, value in dict.items():
-    if value % 2 ==1:
-        print(key)
+#     if arr:
+#         continue
+#     else:
+#         break
 

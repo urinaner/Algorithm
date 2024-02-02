@@ -1,0 +1,19 @@
+from collections import deque
+n, m = map(int, input().split())
+arr = [i for i in range(1,n+1)]
+
+arr=deque(arr)
+
+print("<",end="")
+while 1:
+    for i in range(m-1):
+        arr.append(arr.popleft())
+    print(arr.popleft(),end='')
+
+    if arr:
+        print(", ",end="")
+        continue
+    else:
+        break
+print(">",end="")
+
