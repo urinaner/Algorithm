@@ -1,30 +1,4 @@
-n, m = map(int, input().split())
-
-a=[]
-for i in range(n):
-    a.append(int(input()))
-
-
-a.sort()
-
-start=0
-end = max(a)
-max = 0
-while start<=end:
-    cnt = 0
-    mid = (end + start) // 2  #랜선 길이
-    for i in a:
-        cnt += (i // mid) #순서대로 나눠보기
-
-    if cnt >= m:
-        start = mid + 1
-        if cnt == m:
-            if max <= mid:
-                max = mid
-    else:
-        end = mid - 1
-        if cnt == m:
-            if max <= mid:
-                max = mid
-
-print(max)
+    
+    # elif a[0] == max(a):
+    #     a.popleft()
+    #     cnt+=1
