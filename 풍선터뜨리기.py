@@ -1,14 +1,17 @@
 import sys
-
+from collections import deque
 n = int(input())
 
+Q=[(pos, val) for pos, val in enumerate(list(map(int, input().split())))]
 
-m_list = list(map(int, input().split()))
+dq = deque(Q)
+ans = []
+while dq:
+    num=dq.popleft()
+    ans.append(num[0]+1)
+    if num[1] < 0:
+        dq.rotate(-(num[1]))
+    else:
+        dq.rotate(-(num[1]-1))
 
-m_list1 = m_list
-
-x=0 #축
-
-for i in range(0, n): #n번
-    pop=m_list.pop(x)
-    print(m_list1.index(pop))
+print(' '.join(map(str, ans)))
