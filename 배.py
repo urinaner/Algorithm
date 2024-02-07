@@ -24,7 +24,7 @@ for i in m_list:
     if cnt <= n_list[j]:
         j+=1
         cnt=0
-        if j == n and i != m_list[-1]: #한바퀴
+        if j == n: #한바퀴
             time+=1
             j=0
     else:
@@ -34,11 +34,6 @@ for i in m_list:
                 j=_
                 cnt=0
                 break
-            
-                
-
-     
-
 print(time)
 
         
