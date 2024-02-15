@@ -2,12 +2,12 @@ def gameWin(i, j, arr):
     global cnt #오목 개수
     global x #오목 방향
 
-    if cnt >= 4:
+    if cnt > 4: #육목 제거
         if ans:
             ans.pop()
             ans.pop()
         return False
-    
+
     elif cnt == 4: #오목 5개 True
         ans.append([i,j,arr[i][j]])
         return True
@@ -35,20 +35,15 @@ def gameWin(i, j, arr):
                     cnt=1
                     x = _
                     gameWin(dx,dy,arr) #
-
         return False
-
-
 arr = [] #저장 배열
 
 ans = []
 for i in range(19):
     arr.append(list(map(int, input().split())))
 
-
 nx = [1, 1, 1, -1, -1, -1, 0, 0]
 ny = [0, -1, 1, 0, -1, 1, 1, -1]
-
 
 for i in range(19):
     for j in range(19):
