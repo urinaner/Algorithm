@@ -1,24 +1,24 @@
 N = int(input())
 
-def maxProfit(index):
-    global N
-    global cnt
-
-    money = 0
-    if cnt > N:
-        return False
-    money += maxProfit(index+arr[index][0])
-    
-
-
+def DFS(L, sum):
+    global res
+    if L == N+1:
+        if res < sum:
+            res = sum
+    else:
+        if L+day[L] <= N+1:
+            DFS(L+day[L], sum+profit[L])
+        DFS(L+1, sum)
 
 
 
-arr = []
+day = [0]
+profit = [0]
 for i in range(N):
     a, b = map(int, input().split())
-    arr.append([a,b])
+    day.append(a)
+    profit.append(b)
 
-for i in range(N):
-    cnt = 0
-    arr.append(maxProfit(0))
+res = -27600000
+DFS(1,0)
+print(res)
