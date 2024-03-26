@@ -16,7 +16,7 @@ while dq:
     if now == m: #같으면 탈출
         break
     for next in (now-1, now+1, now*2): #상태트리 생성
-        if 0<next <=m:
+        if 0<=next<=100000:
             if ch[next] == 0:  #방문 안햇고, next가 정상범위면       
                 dq.append(next) #큐에 추가
                 ch[next] = 1 #방문처리
