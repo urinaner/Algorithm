@@ -7,10 +7,10 @@ for i in range(m):
     arr[a][b] += 1 
     arr[b][a] += 1
 
-# for i in range(1, n+1):
-#     for j in range(1, n+1):
-#         print(arr[i][j], end=" ")
-#     print()
+for i in range(1, n+1):
+    for j in range(1, n+1):
+        print(arr[i][j], end=" ")
+    print()
 
 s = 0
 for i in range(1, n+1):
