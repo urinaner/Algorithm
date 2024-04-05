@@ -1,24 +1,29 @@
+from collections import deque
+import sys
+input = sys.stdin.readline
 n, m = map(int, input().split())
 
-arr = [[0 for i in range(n+1)] for j in range(n+1)]
+arr = [[] for _ in range(n+1)]
 
 for i in range(m):
     a, b = map(int, input().split())
-    arr[a][b] += 1 
-    arr[b][a] += 1
+    arr[a].append(b)
+    arr[b].append(a)
+
+check = [False] * (n+1)
+cnt = 0
 
 for i in range(1, n+1):
-    for j in range(1, n+1):
-        print(arr[i][j], end=" ")
-    print()
+    if not check[i]:
+        dq = deque()
+        dq.append(i)
+        check[i] = True
+        while dq:
+            node = dq.popleft()
+            for i in arr[node]:
+                if not check[i]:
+                    check[i] = True
+                    dq.append(i)
+        cnt+=1
 
-s = 0
-for i in range(1, n+1):
-    cnt = 0
-    for j in range(1, n+1):
-        if arr[i][j] == 1:
-            cnt+=1
-    if cnt >= 2:
-        s += 1
-
-print(s//2)
+print(cnt)
