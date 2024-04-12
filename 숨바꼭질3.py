@@ -16,7 +16,7 @@ while dq:
     if now == m:
         break
 
-    for next in (now-1, now+1, now*2):
+    for next in (now*2, now+1, now-1):
         if 0<=next<100001:
             if ch[next]==0:
                 ch[next] = 1
