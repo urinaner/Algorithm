@@ -1,4 +1,4 @@
-tmp = 2740000000
+tmp = 274000000000
 s = 0
 for _ in range(7):
     n = int(input())
@@ -8,7 +8,7 @@ for _ in range(7):
             tmp = n
 if s==0:
     print(-1)
-else:
-    print(s)
+    exit()
+print(s)
 print(tmp)
 
