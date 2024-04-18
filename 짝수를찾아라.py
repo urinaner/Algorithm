@@ -12,5 +12,3 @@ for _ in range(n):
     print(s, end=" ")
     print(tmp)
     
-
-
