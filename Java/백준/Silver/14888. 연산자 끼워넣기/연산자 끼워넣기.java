@@ -1,64 +1,65 @@
-import java.io.*;
-import java.util.*;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.util.StringTokenizer;
+
 public class Main {
-	static int [] arr;
-	static int [] operater = new int[4];
-	static int n;
-	static int MAX = Integer.MIN_VALUE;
-	static int MIN = Integer.MAX_VALUE;
+    static int N;
+    static int maxValue = Integer.MIN_VALUE;
+    static int minValue = Integer.MAX_VALUE;
+    static int []numbers;
+    static int []operator;
 
-	public static void main(String[] args) throws IOException{
-		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		n = Integer.parseInt(br.readLine());
-		arr = new int[n];
+    public static void main(String[] args) throws Exception{
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringTokenizer st;
 
-		StringTokenizer st = new StringTokenizer(br.readLine());
-		for(int i=0; i<n; i++){
-			arr[i] = Integer.parseInt(st.nextToken());
-		}	
+        N = Integer.parseInt(br.readLine());
+        numbers = new int[N];
 
+        st = new StringTokenizer(br.readLine());
+        for(int i=0; i<N; i++){
+            numbers[i] = Integer.parseInt(st.nextToken());
+        }
+        st = new StringTokenizer(br.readLine());
+        operator = new int[4];
+        for(int i=0; i<4; i++){
+            operator[i] = Integer.parseInt(st.nextToken());
+        }
 
-		st = new StringTokenizer(br.readLine());
-		for(int i=0; i<4; i++){
-			operater[i] = Integer.parseInt(st.nextToken());
-		}
+        DFS(numbers[0], 1);
 
-		DFS(arr[0], 1);
+        System.out.println(maxValue);
+        System.out.println(minValue);
+    }
 
-		System.out.println(MAX);
-		System.out.println(MIN);
-	
-	}
+    static void DFS(int number, int K){
+        if(N == K){
+            maxValue = Math.max(number, maxValue);
+            minValue = Math.min(number, minValue);
+            return;
+        }
 
-	static void DFS(int num, int idx){
-		
-		if(idx == n){
-			MAX = Math.max(MAX, num);
-		    MIN = Math.min(MIN, num);
-			return;
-		}
+        for(int i=0; i<4; i++){
+            if(operator[i] > 0){
+                operator[i]--;
 
-		for(int i=0; i<4; i++){
-			if(operater[i] > 0){
-				operater[i]--;
-			
+                switch (i){
+                    case 0:
+                        DFS(number + numbers[K], K+1);
+                        break;
+                    case 1:
+                        DFS(number - numbers[K], K+1);
+                        break;
+                    case 2:
+                        DFS(number * numbers[K], K+1);
+                        break;
+                    case 3:
+                        DFS(number / numbers[K], K+1);
+                        break;
+                }
 
-				switch (i) {
-					case 0: DFS(num + arr[idx], idx + 1);
-						break;
-					case 1: DFS(num - arr[idx], idx + 1);
-						break;
-					case 2: DFS(num * arr[idx], idx + 1);
-						break;
-					case 3: DFS(num / arr[idx], idx + 1);
-						break;
-				}
-			
-
-				operater[i]++;
-			}
-		}
-	}
-	
-
+                operator[i]++;
+            }
+        }
+    }
 }
