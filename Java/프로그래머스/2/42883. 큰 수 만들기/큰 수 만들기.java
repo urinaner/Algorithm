@@ -1,19 +1,26 @@
-public class Solution {
+class Solution {
+    boolean []visited;
+    String number;
+    int maxNum;
+    int k;
     public String solution(String number, int k) {
-        StringBuilder builder = new StringBuilder();
-
-        int idx = 0;
-        int max;
-        for(int i = 0; i < number.length()-k; i++){
-            max = 0;
-            for(int j = idx; j <= i+k; j++){
-                if(max < number.charAt(j)-'0'){
-                    max = number.charAt(j)-'0';
-                    idx = j+1;
-                }
-            }
-            builder.append(max);
+        String answer = "";
+        visited = new boolean[number.length()];
+        this.number = number;
+        this.k = k;
+        
+        DFS("", 0, 0);
+        return maxNum + "";
+    }
+    
+    private void DFS(String num, int n, int idx){
+        if(n == (number.length() - k)){
+            maxNum = Math.max(maxNum, Integer.parseInt(num));
         }
-        return builder.toString();
+        
+        for(int i=idx + 1; i<number.length(); i++){
+            DFS(num + number.charAt(i), n + 1, i);
+        }
+        
     }
 }
