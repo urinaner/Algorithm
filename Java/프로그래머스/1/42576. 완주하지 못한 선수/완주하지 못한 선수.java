@@ -1,21 +1,29 @@
 import java.util.*;
+
 class Solution {
     public String solution(String[] participant, String[] completion) {
-        HashMap<String, Integer> map = new HashMap<>();
+        String answer = "";
+        Map<String, Integer> map = new HashMap<>();
+        //참가자 map에 추가
         
-        for(String s : participant){
-            map.put(s, map.getOrDefault(s, 0) + 1);
+        for(String person : participant){
+            map.put(person, map.getOrDefault(person, 0) + 1);
         }
         
-        for(String s : completion){
-            map.put(s, map.get(s) - 1);
+        //completion 빼기
+        
+        for(String person : completion){
+            map.put(person, map.get(person)-1);
         }
-        String result = "";
-        for(String key : map.keySet()){
-            if(map.get(key) != 0){
-                return key;
+        //남아있는 참가자 정답
+        
+        for(String person : participant){
+            if(map.get(person) == 1){
+                answer = person;
             }
         }
-        return result;
+                
+        return answer;
+        
     }
 }
