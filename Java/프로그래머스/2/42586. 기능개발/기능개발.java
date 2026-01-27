@@ -1,28 +1,27 @@
 import java.util.*;
+
 class Solution {
     public int[] solution(int[] progresses, int[] speeds) {
-        ArrayDeque<Integer> stack = new ArrayDeque<>();
-        
-        int n = progresses.length;
-        int arr[] = new int[n];
-        
-        for(int i=0; i<n; i++){
-            arr[i] = (int)Math.ceil((100.0 - progresses[i]) / speeds[i]);
-        }
-        
-        int maxValue = arr[0];
-        int count = 0;
-        
-        for(int j=0; j<n; j++){
-            if(arr[j] <= maxValue){
-                count++;
-            }else{
-                stack.add(count);
-                count = 1;
-                maxValue = arr[j];
+        Queue<Integer> queue = new LinkedList<>();
+        List<Integer> arr = new ArrayList<>();
+        for(int i=0; i<speeds.length; i++){
+            //7, 4, 9
+            double value = (100 - progresses[i]) / (double)speeds[i];
+            int tmp = (int)Math.ceil(value);
+            
+            if(!queue.isEmpty() && queue.peek() < tmp){
+                arr.add(queue.size());
+                queue.clear();
             }
+            queue.offer(tmp);
+            
         }
-        stack.add(count);
-        return stack.stream().mapToInt(Integer::intValue).toArray();
+        arr.add(queue.size());
+        System.out.println(arr);
+        int[] answer = new int[arr.size()] ;
+        for(int j=0; j<arr.size(); j++){
+            answer[j] = arr.get(j);
+        }
+        return answer;
     }
 }
